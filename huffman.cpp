@@ -1,10 +1,8 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 #define LL long long
-#define FPP(i,start,end) for(int i = start; i < end; i++)
-#define FMM(i,start,end) for(int i = end-1; i >= start; i--)
-#define MAXN 200005
 
 typedef struct _node
 {
@@ -52,7 +50,7 @@ int main()
     map<char, string> huffman;
     int cnt = 0;
     getline(cin,s);
-    FPP(i,0,s.size())
+    for(int i = 0; i < s.size(); i++)
     {
         k[s[i]]++;
         cnt++;
@@ -69,10 +67,7 @@ int main()
     {
         dq.push_back(createNode(it.second, NULL, NULL, it.first));
     }
-
     sort(dq.begin(), dq.end(), cmp);
-    // for(auto it: dq) cout << "'" << (it->ch) << "'" << " \t";/////
-    // cout << "\n";///
     while(dq.size() > 1)
     {
         node * n1, * n2;
@@ -84,10 +79,8 @@ int main()
         else if(n1->ch > n2->ch) dq.push_back(createNode(n1->p + n2->p,n2, n1, n2->ch));
         else dq.push_back(createNode(n1->p + n2->p,n1, n2, n1->ch));
         sort(dq.begin(), dq.end(), cmp);
-        // for(auto it: dq) cout << (it->p) << " ";/////
-        // cout << "\n";////
-        for(auto it: dq) cout << "'" << (it->ch) << "'" << " \t";/////
-        cout << "\n";///
+        for(auto it: dq) cout << "'" << (it->ch) << "'" << " \t";
+        cout << "\n";
     }
 
     travarse("", dq[0], huffman);
